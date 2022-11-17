@@ -12,7 +12,12 @@ RestResponse response = DigimonClient.GetAsync(request).Result;
 
 Digimon d = JsonSerializer.Deserialize<List<Digimon>>(response.Content).First();
 
-File.WriteAllText("Digimon.json", d.Level);
+
+d.Level = "idiot";
+
+string dString = JsonSerializer.Serialize<Digimon>(d);
+
+File.WriteAllText("Digimon.json", dString);
 
 Console.WriteLine(d.Level);
 
